@@ -1,6 +1,8 @@
 'use strict';
 
 const form = document.getElementById('financeiroForm');
+
+// TESTEE
 const lista = document.getElementById('listaFinanceira');
 
 /* carregar movimentações salvas */
