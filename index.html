@@ -3,66 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Painel de gestão de estoque StokUP">
   <title>StokUP | Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div class="container">
-
-    <!-- Menu lateral -->
     <aside class="sidebar">
-      <img src="logo-stokup.png" alt="StokUP" class="logo-stokup">
-
-      <nav>
-        <ul>
-          <li><a href="index.html" class="ativo">Dashboard</a></li>
-          <li><a href="produtos.html" class="">Produtos</a></li>
-          <li><a href="estoque.html" class="">Estoque</a></li>
-          <li><a href="financeiro.html" class="">Financeiro</a></li>
-          <li><a href="administracao.html" class="">Administração</a></li>
-        </ul>
-      </nav>
+      <a href="index.html" class="brand" aria-label="Ir para o dashboard">
+        <img src="logo-stokup.png" alt="StokUP" class="logo-stokup">
+      </a>
+      <p class="nav-label">MENU PRINCIPAL</p>
+      <nav aria-label="Menu principal"><ul>
+        <li><a href="index.html" class="ativo">Dashboard</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="estoque.html">Estoque</a></li>
+        <li><a href="financeiro.html">Financeiro</a></li>
+        <li><a href="administracao.html">Administração</a></li>
+      </ul></nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-help-icon" aria-hidden="true">?</div>
+        <div><strong>Precisa de ajuda?</strong><span>Acesse o guia rápido</span></div>
+      </div>
     </aside>
 
-    <!-- Conteúdo principal -->
-    <main class="main-content">
-      <header>
-        <h1>Painel Administrativo</h1>
-        <p>Gerencie produtos, estoque e financeiro de forma simples e profissional</p>
+    <main class="main-content dashboard-page">
+      <header class="page-header">
+        <div>
+          <span class="eyebrow">VISÃO GERAL</span>
+          <h1>Olá! Veja como está seu negócio.</h1>
+          <p id="dataAtual">Acompanhe os principais números da sua operação.</p>
+        </div>
+        <a class="primary-button" href="produtos.html#novo-produto"><span aria-hidden="true">＋</span> Novo produto</a>
       </header>
 
-      <!-- Cards inteligentes -->
-      <section class="cards">
-
-        <div class="card">
-          <h3>Produtos</h3>
-          <p id="totalProdutos">0 cadastrados</p>
-        </div>
-
-        <div class="card">
-          <h3>Estoque</h3>
-          <p id="totalEstoque">0 peças</p>
-        </div>
-
-        <div class="card">
-          <h3>Financeiro</h3>
-          <p id="totalFinanceiro">R$ 0,00</p>
-        </div>
-
-        </section>
-
-      <!-- Botão adicionar produto -->
-      <section class="actions">
-        <a href="produtos.html">+ Adicionar Produto</a>
+      <section class="metric-grid" aria-label="Resumo da operação">
+        <article class="metric-card metric-blue">
+          <div class="metric-top"><span class="metric-icon" aria-hidden="true">▣</span><span class="metric-tag">Catálogo</span></div>
+          <p class="metric-label">Produtos cadastrados</p><strong class="metric-value" id="totalProdutos">0</strong>
+          <span class="metric-detail" id="produtosDetail">Comece adicionando seu primeiro item</span>
+        </article>
+        <article class="metric-card metric-cyan">
+          <div class="metric-top"><span class="metric-icon" aria-hidden="true">◫</span><span class="metric-tag">Inventário</span></div>
+          <p class="metric-label">Itens em estoque</p><strong class="metric-value" id="totalEstoque">0</strong>
+          <span class="metric-detail" id="estoqueDetail">Nenhum item monitorado</span>
+        </article>
+        <article class="metric-card metric-green">
+          <div class="metric-top"><span class="metric-icon" aria-hidden="true">R$</span><span class="metric-tag">Patrimônio</span></div>
+          <p class="metric-label">Valor do estoque</p><strong class="metric-value money" id="valorEstoque">R$ 0,00</strong>
+          <span class="metric-detail">Preço × quantidade disponível</span>
+        </article>
+        <article class="metric-card metric-purple">
+          <div class="metric-top"><span class="metric-icon" aria-hidden="true">↗</span><span class="metric-tag">Financeiro</span></div>
+          <p class="metric-label">Saldo financeiro</p><strong class="metric-value money" id="totalFinanceiro">R$ 0,00</strong>
+          <span class="metric-detail" id="financeiroDetail">Sem movimentações registradas</span>
+        </article>
       </section>
 
+      <section class="dashboard-grid">
+        <article class="panel stock-panel">
+          <div class="panel-header">
+            <div><h2>Saúde do estoque</h2><p>Distribuição dos produtos por disponibilidade</p></div>
+            <a href="estoque.html" class="text-link">Ver estoque <span>→</span></a>
+          </div>
+          <div class="stock-summary">
+            <div class="donut" id="stockDonut" style="--available:0;--low:0" role="img" aria-label="Distribuição do estoque"><div><strong id="percentualSaudavel">0%</strong><span>saudável</span></div></div>
+            <div class="stock-legend">
+              <div><span class="legend-dot available"></span><p><strong id="estoqueSaudavel">0 produtos</strong><small>Estoque saudável</small></p></div>
+              <div><span class="legend-dot low"></span><p><strong id="estoqueBaixo">0 produtos</strong><small>Estoque baixo (até 3)</small></p></div>
+              <div><span class="legend-dot out"></span><p><strong id="estoqueEsgotado">0 produtos</strong><small>Produtos esgotados</small></p></div>
+            </div>
+          </div>
+          <div class="stock-alert" id="stockAlert"><span aria-hidden="true">✓</span><p><strong>Seu estoque está em dia</strong><small>Não há produtos precisando de atenção agora.</small></p></div>
+        </article>
+
+        <article class="panel quick-panel">
+          <div class="panel-header"><div><h2>Ações rápidas</h2><p>Atalhos para tarefas frequentes</p></div></div>
+          <div class="quick-actions">
+            <a href="produtos.html#novo-produto"><span class="quick-icon blue">＋</span><p><strong>Cadastrar produto</strong><small>Adicione um item ao catálogo</small></p><b>›</b></a>
+            <a href="estoque.html"><span class="quick-icon cyan">⇄</span><p><strong>Movimentar estoque</strong><small>Registre entradas e saídas</small></p><b>›</b></a>
+            <a href="financeiro.html"><span class="quick-icon green">R$</span><p><strong>Lançar movimentação</strong><small>Atualize entradas e despesas</small></p><b>›</b></a>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel recent-panel">
+        <div class="panel-header"><div><h2>Produtos recentes</h2><p>Últimos itens adicionados ao seu catálogo</p></div><a href="produtos.html" class="text-link">Gerenciar produtos <span>→</span></a></div>
+        <div id="produtosRecentes" class="recent-products"></div>
+      </section>
     </main>
-
   </div>
-
-  <!-- IMPORTANTE: script do dashboard -->
+  <script src="menu.js"></script>
   <script src="admin.js"></script>
-
 </body>
 </html>

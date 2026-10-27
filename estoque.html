@@ -1,44 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StokUP | Estoque</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <div class="container">
-
-    <!-- Menu lateral -->
-    <aside class="sidebar">
-      <img src="logo-stokup.png" alt="StokUP" class="logo-stokup">
-
-      <nav>
-        <ul>
-          <li><a href="index.html" class="">Dashboard</a></li>
-          <li><a href="produtos.html" class="">Produtos</a></li>
-          <li><a href="estoque.html" class="ativo">Estoque</a></li>
-          <li><a href="financeiro.html" class="">Financeiro</a></li>
-          <li><a href="administracao.html" class="">Administração</a></li>
-        </ul>
-      </nav>
-    </aside>
-
-    <!-- Conteúdo principal -->
-    <main class="main-content">
-      <header>
-        <h1>Controle de Estoque</h1>
-        <p>Gerencie entrada e saída de produtos</p>
-      </header>
-
-  <section class="estoque-lista" id="estoqueLista"></section>
-    
-      </section>
-    </main>
-
-  </div>
-
-  <script src="estoque.js"></script>
-</body>
-</html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Controle de estoque StokUP"><title>StokUP | Estoque</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="container">
+  <aside class="sidebar"><a href="index.html" class="brand" aria-label="Ir para o dashboard"><img src="logo-stokup.png" alt="StokUP" class="logo-stokup"></a><p class="nav-label">MENU PRINCIPAL</p><nav aria-label="Menu principal"><ul><li><a href="index.html">Dashboard</a></li><li><a href="produtos.html">Produtos</a></li><li><a href="estoque.html" class="ativo">Estoque</a></li><li><a href="financeiro.html">Financeiro</a></li><li><a href="administracao.html">Administração</a></li></ul></nav><div class="sidebar-footer"><div class="sidebar-help-icon">?</div><div><strong>Precisa de ajuda?</strong><span>Acesse o guia rápido</span></div></div></aside>
+  <main class="main-content stock-page">
+    <header class="page-header"><div><span class="eyebrow">INVENTÁRIO</span><h1>Controle de estoque</h1><p>Monitore quantidades e registre entradas e saídas rapidamente.</p></div><a class="primary-button" href="produtos.html#novo-produto"><span>＋</span> Cadastrar produto</a></header>
+    <section class="metric-grid stock-metrics">
+      <article class="metric-card metric-blue"><div class="metric-top"><span class="metric-icon">◫</span><span class="metric-tag">Total</span></div><p class="metric-label">Itens em estoque</p><strong class="metric-value" id="estoqueTotal">0</strong><span class="metric-detail">Unidades disponíveis</span></article>
+      <article class="metric-card metric-green"><div class="metric-top"><span class="metric-icon">✓</span><span class="metric-tag">Saudável</span></div><p class="metric-label">Produtos regulares</p><strong class="metric-value" id="estoqueRegular">0</strong><span class="metric-detail">Acima do estoque mínimo</span></article>
+      <article class="metric-card metric-orange"><div class="metric-top"><span class="metric-icon">!</span><span class="metric-tag">Atenção</span></div><p class="metric-label">Estoque baixo</p><strong class="metric-value" id="estoqueAlerta">0</strong><span class="metric-detail">Precisam de reposição</span></article>
+      <article class="metric-card metric-red"><div class="metric-top"><span class="metric-icon">×</span><span class="metric-tag">Crítico</span></div><p class="metric-label">Produtos esgotados</p><strong class="metric-value" id="estoqueZerado">0</strong><span class="metric-detail">Sem unidades disponíveis</span></article>
+    </section>
+    <section class="panel inventory-panel">
+      <div class="catalog-header"><div><h2>Produtos em estoque</h2><p><span id="estoqueCount">0</span> produtos monitorados</p></div><div class="catalog-tools"><label class="search-box" for="buscaEstoque"><span>⌕</span><input id="buscaEstoque" type="search" placeholder="Buscar produto ou SKU"></label><select id="filtroStatus" aria-label="Filtrar estoque"><option value="todos">Todos os status</option><option value="normal">Estoque saudável</option><option value="baixo">Estoque baixo</option><option value="esgotado">Esgotados</option></select></div></div>
+      <div class="inventory-note"><span>i</span><p><strong>Como funciona?</strong> Defina a quantidade da movimentação e use Entrada ou Saída. O estoque mínimo configurado no produto gera os alertas.</p></div>
+      <div class="inventory-grid" id="estoqueLista"></div>
+    </section>
+  </main>
+</div><div class="toast" id="toastEstoque" role="status" aria-live="polite"><span>✓</span><p><strong>Estoque atualizado</strong><small>A movimentação foi registrada.</small></p></div><script src="menu.js"></script><script src="estoque.js"></script></body></html>

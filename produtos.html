@@ -2,52 +2,87 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cadastro e gestão de produtos StokUP">
   <title>StokUP | Produtos</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container">
+    <aside class="sidebar">
+      <a href="index.html" class="brand" aria-label="Ir para o dashboard"><img src="logo-stokup.png" alt="StokUP" class="logo-stokup"></a>
+      <p class="nav-label">MENU PRINCIPAL</p>
+      <nav aria-label="Menu principal"><ul>
+        <li><a href="index.html">Dashboard</a></li><li><a href="produtos.html" class="ativo">Produtos</a></li><li><a href="estoque.html">Estoque</a></li><li><a href="financeiro.html">Financeiro</a></li><li><a href="administracao.html">Administração</a></li>
+      </ul></nav>
+      <div class="sidebar-footer"><div class="sidebar-help-icon" aria-hidden="true">?</div><div><strong>Precisa de ajuda?</strong><span>Acesse o guia rápido</span></div></div>
+    </aside>
 
-<div class="container">
+    <main class="main-content products-page">
+      <header class="page-header">
+        <div><span class="eyebrow">CATÁLOGO</span><h1>Produtos</h1><p>Cadastre, organize e acompanhe os itens do seu estoque.</p></div>
+        <button class="primary-button" type="button" id="focarFormulario"><span aria-hidden="true">＋</span> Novo produto</button>
+      </header>
 
-  <aside class="sidebar">
-    <img src="logo-stokup.png" alt="StokUP" class="logo-stokup">
-    <nav>
-        <ul>
-          <li><a href="index.html" class="">Dashboard</a></li>
-          <li><a href="produtos.html" class="ativo">Produtos</a></li>
-          <li><a href="estoque.html" class="">Estoque</a></li>
-          <li><a href="financeiro.html" class="">Financeiro</a></li>
-          <li><a href="administracao.html" class="">Administração</a></li>
-        </ul>
-      </nav>
-  </aside>
+      <section class="product-workspace" id="novo-produto">
+        <article class="panel product-form-card">
+          <div class="panel-header form-heading">
+            <div><span class="section-step">01</span><div><h2 id="formTitle">Cadastrar novo produto</h2><p id="formSubtitle">Preencha os dados para incluir um item no catálogo.</p></div></div>
+            <span class="required-note"><b>*</b> Campos obrigatórios</span>
+          </div>
 
-  <main class="main-content">
+          <form id="produtoForm" novalidate>
+            <input type="hidden" id="editIndex" value="">
+            <fieldset>
+              <legend>Informações básicas</legend>
+              <div class="form-grid">
+                <div class="field field-wide"><label for="nome">Nome do produto <b>*</b></label><input type="text" id="nome" placeholder="Ex.: Camiseta básica branca" autocomplete="off" required><small class="field-error">Informe o nome do produto.</small></div>
+                <div class="field"><label for="categoria">Categoria</label><select id="categoria"><option value="">Selecione uma categoria</option><option>Alimentos</option><option>Beleza</option><option>Casa</option><option>Eletrônicos</option><option>Moda</option><option>Outros</option></select></div>
+                <div class="field"><label for="sku">Código / SKU</label><input type="text" id="sku" placeholder="Ex.: CAM-001" autocomplete="off"></div>
+                <div class="field field-wide"><label for="descricao">Descrição</label><textarea id="descricao" rows="3" maxlength="240" placeholder="Detalhes que ajudam a identificar o produto"></textarea><small class="char-count"><span id="descricaoCount">0</span>/240 caracteres</small></div>
+              </div>
+            </fieldset>
 
-    <h1>Cadastrar Produto</h1>
+            <fieldset>
+              <legend>Preço e estoque</legend>
+              <div class="form-grid three-columns">
+                <div class="field"><label for="preco">Preço de venda <b>*</b></label><div class="input-prefix"><span>R$</span><input type="number" id="preco" placeholder="0,00" min="0" step="0.01" required></div><small class="field-error">Informe um preço válido.</small></div>
+                <div class="field"><label for="quantidade">Estoque inicial <b>*</b></label><input type="number" id="quantidade" placeholder="0" min="0" step="1" required><small class="field-error">Informe a quantidade.</small></div>
+                <div class="field"><label for="estoqueMinimo">Estoque mínimo</label><input type="number" id="estoqueMinimo" placeholder="3" min="0" step="1"><small class="field-hint">Usado para alertas de reposição.</small></div>
+              </div>
+            </fieldset>
 
-<form id="produtoForm">
+            <fieldset>
+              <legend>Imagem do produto</legend>
+              <div class="field"><label for="imagem">URL da imagem</label><input type="url" id="imagem" placeholder="https://exemplo.com/produto.jpg"><small class="field-hint">Cole um link público. Se ficar vazio, usaremos um ícone padrão.</small></div>
+            </fieldset>
 
-  <input type="text" id="nome" placeholder="Nome" required>
+            <div class="form-actions"><button type="button" class="secondary-button hidden" id="cancelarEdicao">Cancelar edição</button><button type="submit" class="primary-button" id="salvarProduto"><span aria-hidden="true">✓</span> Salvar produto</button></div>
+          </form>
+        </article>
 
-  <input type="number" id="preco" placeholder="Preço" step="0.01" required>
+        <aside class="product-side">
+          <article class="panel preview-card">
+            <span class="preview-label">PRÉ-VISUALIZAÇÃO</span><div class="product-preview-image" id="previewImage"><span aria-hidden="true">▣</span></div>
+            <div class="preview-content"><span class="preview-category" id="previewCategory">Sem categoria</span><h3 id="previewName">Nome do produto</h3><p id="previewDescription">A prévia será atualizada enquanto você preenche o formulário.</p><div><strong id="previewPrice">R$ 0,00</strong><span id="previewStock">0 em estoque</span></div></div>
+          </article>
+          <article class="form-tip"><span aria-hidden="true">✦</span><div><strong>Dica para um bom cadastro</strong><p>Use nomes claros e inclua o SKU. Isso facilita buscas e reduz erros na movimentação do estoque.</p></div></article>
+        </aside>
+      </section>
 
-  <input type="number" id="quantidade" placeholder="Quantidade" required>
+      <section class="panel catalog-panel">
+        <div class="catalog-header">
+          <div><h2>Seu catálogo</h2><p><span id="catalogCount">0</span> produtos cadastrados</p></div>
+          <div class="catalog-tools"><label class="search-box" for="buscaProduto"><span aria-hidden="true">⌕</span><input type="search" id="buscaProduto" placeholder="Buscar produto ou SKU"></label><select id="filtroEstoque" aria-label="Filtrar por estoque"><option value="todos">Todos os estoques</option><option value="normal">Em estoque</option><option value="baixo">Estoque baixo</option><option value="esgotado">Esgotado</option></select></div>
+        </div>
+        <div id="listaProdutos" class="product-list"></div>
+      </section>
+    </main>
+  </div>
 
-  <input type="text" id="imagem" placeholder="URL da imagem">
-  
-<input type="text" id="descricao" placeholder="Descrição">
-
-  <button type="submit">Salvar</button>
-
-</form>
-
-<ul id="listaProdutos" class="lista-produtos"></ul>
-
-  </main>
-
-</div>
-
-<script src="produtos.js"></script>
+  <dialog id="confirmDialog" class="confirm-dialog"><div class="dialog-icon" aria-hidden="true">!</div><h2>Excluir produto?</h2><p id="confirmText">Esta ação não poderá ser desfeita.</p><div><button type="button" class="secondary-button" id="cancelarExclusao">Cancelar</button><button type="button" class="danger-button" id="confirmarExclusao">Sim, excluir</button></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"><span>✓</span><p><strong>Produto salvo</strong><small>O catálogo foi atualizado.</small></p></div>
+  <script src="menu.js"></script>
+  <script src="produtos.js"></script>
 </body>
 </html>

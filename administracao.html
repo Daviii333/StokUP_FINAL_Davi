@@ -1,46 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StokUP | Administração</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="container">
-<aside class="sidebar">
-<img src="logo-stokup.png" alt="StokUP" class="logo-stokup">
-<nav><ul>
-<li><a href="index.html">Dashboard</a></li>
-<li><a href="produtos.html">Produtos</a></li>
-<li><a href="estoque.html">Estoque</a></li>
-<li><a href="financeiro.html">Financeiro</a></li>
-<li><a href="administracao.html">Administração</a></li>
-</ul></nav>
-</aside>
-<main class="main-content">
-<header><h1>Administração</h1><p>Configurações e manutenção do sistema StokUP.</p></header>
-<section class="cards">
-<div class="card"><h3>Produtos cadastrados</h3><p id="admProdutos">0</p></div>
-<div class="card"><h3>Movimentações financeiras</h3><p id="admFinanceiro">0</p></div>
-<div class="card"><h3>Armazenamento</h3><p>localStorage</p></div>
-</section>
-<section class="form-section">
-<h2>Manutenção dos dados</h2>
-<p>Use esta opção somente para iniciar o sistema novamente.</p>
-<div class="actions" style="margin-top:20px;">
-<button id="limpar" type="button">Limpar dados do sistema</button>
-</div>
-</section>
-</main></div>
-<script>
-const produtos=JSON.parse(localStorage.getItem('produtos'))||[];
-const financeiro=JSON.parse(localStorage.getItem('financeiro'))||[];
-document.getElementById('admProdutos').textContent=produtos.length;
-document.getElementById('admFinanceiro').textContent=financeiro.length;
-document.getElementById('limpar').onclick=()=>{
- if(confirm('Deseja apagar todos os produtos e lançamentos financeiros?')){
-  localStorage.removeItem('produtos'); localStorage.removeItem('financeiro'); location.reload();
- }
-};
-</script>
-</body></html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Administração StokUP"><title>StokUP | Administração</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="container">
+  <aside class="sidebar"><a href="index.html" class="brand" aria-label="Ir para o dashboard"><img src="logo-stokup.png" alt="StokUP" class="logo-stokup"></a><p class="nav-label">MENU PRINCIPAL</p><nav aria-label="Menu principal"><ul><li><a href="index.html">Dashboard</a></li><li><a href="produtos.html">Produtos</a></li><li><a href="estoque.html">Estoque</a></li><li><a href="financeiro.html">Financeiro</a></li><li><a href="administracao.html" class="ativo">Administração</a></li></ul></nav><div class="sidebar-footer"><div class="sidebar-help-icon">?</div><div><strong>Precisa de ajuda?</strong><span>Acesse o guia rápido</span></div></div></aside>
+  <main class="main-content admin-page">
+    <header class="page-header"><div><span class="eyebrow">SISTEMA</span><h1>Administração</h1><p>Consulte informações, faça backups e gerencie os dados do StokUP.</p></div><button class="secondary-button" id="exportarDados" type="button"><span>↓</span> Exportar backup</button></header>
+    <section class="metric-grid admin-metrics">
+      <article class="metric-card metric-blue"><div class="metric-top"><span class="metric-icon">▣</span><span class="metric-tag">Catálogo</span></div><p class="metric-label">Produtos cadastrados</p><strong class="metric-value" id="admProdutos">0</strong><span class="metric-detail" id="admUnidades">0 unidades no estoque</span></article>
+      <article class="metric-card metric-green"><div class="metric-top"><span class="metric-icon">R$</span><span class="metric-tag">Financeiro</span></div><p class="metric-label">Movimentações</p><strong class="metric-value" id="admFinanceiro">0</strong><span class="metric-detail" id="admSaldo">Saldo de R$ 0,00</span></article>
+      <article class="metric-card metric-purple"><div class="metric-top"><span class="metric-icon">◉</span><span class="metric-tag">Armazenamento</span></div><p class="metric-label">Dados utilizados</p><strong class="metric-value money" id="admStorage">0 KB</strong><span class="metric-detail">Salvos neste navegador</span></article>
+      <article class="metric-card metric-cyan"><div class="metric-top"><span class="metric-icon">✓</span><span class="metric-tag">Status</span></div><p class="metric-label">Sistema</p><strong class="metric-value money">Operacional</strong><span class="metric-detail">Dados disponíveis localmente</span></article>
+    </section>
+    <section class="admin-grid">
+      <article class="panel data-panel"><div class="panel-header"><div><h2>Visão dos dados</h2><p>Resumo do conteúdo salvo neste dispositivo</p></div><span class="status-pill normal">Tudo certo</span></div><div class="data-list"><div><span class="data-icon blue">▣</span><p><strong>Catálogo de produtos</strong><small>Produtos, preços, imagens e quantidades</small></p><b id="dataProdutos">0 registros</b></div><div><span class="data-icon green">R$</span><p><strong>Histórico financeiro</strong><small>Entradas, despesas e categorias</small></p><b id="dataFinanceiro">0 registros</b></div><div><span class="data-icon purple">◉</span><p><strong>Forma de armazenamento</strong><small>Os dados ficam apenas neste navegador</small></p><b>localStorage</b></div></div></article>
+      <article class="panel backup-panel"><div class="panel-header"><div><h2>Backup dos dados</h2><p>Proteja suas informações</p></div></div><div class="backup-illustration">↓</div><h3>Baixe uma cópia de segurança</h3><p>O arquivo reúne produtos e movimentações financeiras e pode ser guardado em um local seguro.</p><button class="primary-button" id="exportarDadosCard" type="button">Exportar arquivo JSON</button><small id="ultimoBackup">Nenhum backup registrado nesta sessão</small></article>
+    </section>
+    <section class="panel danger-zone"><div class="danger-copy"><span>!</span><div><h2>Zona de perigo</h2><p>Apagar os dados remove permanentemente produtos, estoque e movimentações deste navegador.</p></div></div><button class="danger-outline" id="limpar" type="button">Apagar todos os dados</button></section>
+  </main>
+</div><dialog id="dialogLimpar" class="confirm-dialog"><div class="dialog-icon">!</div><h2>Apagar todos os dados?</h2><p>Produtos, quantidades e movimentações financeiras serão excluídos permanentemente deste navegador.</p><label class="confirmation-check"><input type="checkbox" id="confirmacaoLimpeza"> Entendo que esta ação não pode ser desfeita</label><div><button class="secondary-button" id="cancelarLimpeza" type="button">Cancelar</button><button class="danger-button" id="confirmarLimpeza" type="button" disabled>Apagar dados</button></div></dialog><div class="toast" id="toastAdmin" role="status" aria-live="polite"><span>✓</span><p><strong>Backup exportado</strong><small>O arquivo foi baixado com sucesso.</small></p></div><script src="menu.js"></script><script src="administracao.js"></script></body></html>

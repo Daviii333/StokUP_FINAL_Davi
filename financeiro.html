@@ -1,93 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StokUP | Financeiro</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Controle financeiro StokUP"><title>StokUP | Financeiro</title><link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body><div class="container">
+  <aside class="sidebar">
+    <a href="index.html" class="brand" aria-label="Ir para o dashboard"><img src="logo-stokup.png" alt="StokUP" class="logo-stokup"></a>
+    <p class="nav-label">MENU PRINCIPAL</p><nav aria-label="Menu principal"><ul>
+      <li><a href="index.html">Dashboard</a></li><li><a href="produtos.html">Produtos</a></li><li><a href="estoque.html">Estoque</a></li><li><a href="financeiro.html" class="ativo">Financeiro</a></li><li><a href="administracao.html">Administração</a></li>
+    </ul></nav>
+    <div class="sidebar-footer"><div class="sidebar-help-icon">?</div><div><strong>Precisa de ajuda?</strong><span>Acesse o guia rápido</span></div></div>
+  </aside>
 
-  <div class="container">
+  <main class="main-content finance-page">
+    <header class="page-header"><div><span class="eyebrow">FINANCEIRO</span><h1>Controle financeiro</h1><p>Acompanhe entradas, despesas e o resultado do seu negócio.</p></div><button class="primary-button" id="novaMovimentacao" type="button"><span>＋</span> Nova movimentação</button></header>
 
-    <!-- Menu lateral -->
-    <aside class="sidebar">
-      <img src="logo-stokup.png" alt="StokUP" class="logo-stokup">
+    <section class="metric-grid finance-metrics" aria-label="Resumo financeiro">
+      <article class="metric-card metric-green"><div class="metric-top"><span class="metric-icon">↗</span><span class="metric-tag">Entradas</span></div><p class="metric-label">Faturamento</p><strong class="metric-value money" id="faturamento">R$ 0,00</strong><span class="metric-detail" id="entradasDetail">Nenhuma entrada registrada</span></article>
+      <article class="metric-card metric-red"><div class="metric-top"><span class="metric-icon">↘</span><span class="metric-tag">Saídas</span></div><p class="metric-label">Despesas</p><strong class="metric-value money" id="despesas">R$ 0,00</strong><span class="metric-detail" id="saidasDetail">Nenhuma saída registrada</span></article>
+      <article class="metric-card metric-blue"><div class="metric-top"><span class="metric-icon">R$</span><span class="metric-tag">Resultado</span></div><p class="metric-label">Saldo atual</p><strong class="metric-value money" id="lucro">R$ 0,00</strong><span class="metric-detail" id="saldoDetail">Entradas menos despesas</span></article>
+      <article class="metric-card metric-purple"><div class="metric-top"><span class="metric-icon">≡</span><span class="metric-tag">Histórico</span></div><p class="metric-label">Movimentações</p><strong class="metric-value" id="totalMovimentacoes">0</strong><span class="metric-detail">Registros financeiros</span></article>
+    </section>
 
-      <nav>
-        <ul>
-          <li><a href="index.html" class="">Dashboard</a></li>
-          <li><a href="produtos.html" class="">Produtos</a></li>
-          <li><a href="estoque.html" class="">Estoque</a></li>
-          <li><a href="financeiro.html" class="ativo">Financeiro</a></li>
-          <li><a href="administracao.html" class="">Administração</a></li>
-        </ul>
-      </nav>
-    </aside>
+    <section class="finance-workspace">
+      <article class="panel finance-overview">
+        <div class="panel-header"><div><h2>Visão do período</h2><p>Comparativo entre entradas e despesas registradas</p></div><span class="period-chip">Todo o período</span></div>
+        <div class="balance-visual">
+          <div class="balance-row"><div><span class="legend-dot available"></span><strong>Entradas</strong><small id="entradaPercent">0%</small></div><div class="balance-track"><span id="entradaBar" class="income-bar"></span></div></div>
+          <div class="balance-row"><div><span class="legend-dot out"></span><strong>Despesas</strong><small id="saidaPercent">0%</small></div><div class="balance-track"><span id="saidaBar" class="expense-bar"></span></div></div>
+        </div>
+        <div class="finance-insight" id="financeInsight"><span>✦</span><p><strong>Comece registrando suas movimentações</strong><small>O comparativo será atualizado automaticamente.</small></p></div>
+      </article>
 
-    <!-- Conteúdo principal -->
-    <main class="main-content">
-      <header>
-        <h1>Controle Financeiro</h1>
-        <p>Acompanhe vendas, despesas e lucro da loja</p>
-      </header>
-
-      <section class="cards">
-
-        <div class="card">
-  <h3>Faturamento</h3>
-  <p id="faturamento">R$ 0,00</p>
-</div>
-
-<div class="card">
-  <h3>Despesas</h3>
-  <p id="despesas">R$ 0,00</p>
-</div>
-
-<div class="card">
-  <h3>Lucro</h3>
-  <p id="lucro">R$ 0,00</p>
-</div>
-
-      </section>
-
-      <section class="form-section">
-        <h2>Adicionar Movimentação</h2>
-
-        <form id="financeiroForm">
-          <input
-            type="text"
-            id="descricao"
-            placeholder="Descrição"
-            required
-          >
-
-          <input
-            type="number"
-            id="valor"
-            placeholder="Valor"
-            required
-          >
-
-          <select id="tipo" required>
-            <option value="">Tipo</option>
-            <option value="entrada">Entrada</option>
-            <option value="saida">Saída</option>
-          </select>
-
-          <button type="submit">Salvar</button>
+      <article class="panel finance-form-card" id="formMovimentacao">
+        <div class="panel-header"><div><h2>Nova movimentação</h2><p>Registre uma entrada ou despesa</p></div><span class="section-step">01</span></div>
+        <form id="financeiroForm" novalidate>
+          <div class="field"><label for="descricaoFinanceira">Descrição <b>*</b></label><input type="text" id="descricaoFinanceira" placeholder="Ex.: Venda do dia" required><small class="field-error">Informe uma descrição.</small></div>
+          <div class="finance-form-grid"><div class="field"><label for="valor">Valor <b>*</b></label><div class="input-prefix"><span>R$</span><input type="number" id="valor" min="0.01" step="0.01" placeholder="0,00" required></div><small class="field-error">Informe um valor maior que zero.</small></div><div class="field"><label for="tipo">Tipo <b>*</b></label><select id="tipo" required><option value="">Selecione</option><option value="entrada">Entrada</option><option value="saida">Despesa</option></select><small class="field-error">Selecione o tipo.</small></div></div>
+          <div class="finance-form-grid"><div class="field"><label for="categoriaFinanceira">Categoria</label><select id="categoriaFinanceira"><option value="">Sem categoria</option><option>Vendas</option><option>Fornecedores</option><option>Operacional</option><option>Marketing</option><option>Impostos</option><option>Outros</option></select></div><div class="field"><label for="dataMovimentacao">Data</label><input type="date" id="dataMovimentacao"></div></div>
+          <button type="submit" class="primary-button finance-submit"><span>✓</span> Salvar movimentação</button>
         </form>
-      </section>
+      </article>
+    </section>
 
-      <section class="lista-financeira">
-        <h2>Movimentações</h2>
-        <ul id="listaFinanceira"></ul>
-      </section>
-
-    </main>
-
-  </div>
-
-  <script src="financeiro.js"></script>
-</body>
-</html>
+    <section class="panel transaction-panel">
+      <div class="catalog-header"><div><h2>Histórico de movimentações</h2><p id="transactionCount">0 registros encontrados</p></div><div class="catalog-tools"><label class="search-box" for="buscaFinanceira"><span>⌕</span><input type="search" id="buscaFinanceira" placeholder="Buscar movimentação"></label><select id="filtroTipo" aria-label="Filtrar movimentações"><option value="todos">Todos os tipos</option><option value="entrada">Entradas</option><option value="saida">Despesas</option></select></div></div>
+      <div id="listaFinanceira" class="transaction-list"></div>
+    </section>
+  </main>
+</div>
+<dialog id="dialogFinanceiro" class="confirm-dialog"><div class="dialog-icon">!</div><h2>Excluir movimentação?</h2><p id="textoDialogFinanceiro">Esta ação não poderá ser desfeita.</p><div><button class="secondary-button" id="cancelarFinanceiro" type="button">Cancelar</button><button class="danger-button" id="confirmarFinanceiro" type="button">Sim, excluir</button></div></dialog>
+<div class="toast" id="toastFinanceiro" role="status" aria-live="polite"><span>✓</span><p><strong>Movimentação salva</strong><small>O resumo financeiro foi atualizado.</small></p></div>
+<script src="menu.js"></script><script src="financeiro.js"></script></body></html>
