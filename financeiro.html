@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StokUP | Financeiro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Menu lateral -->
+    <aside class="sidebar">
+      <img src="logo-stokup.png" alt="StokUP" class="logo-stokup">
+
+      <nav>
+        <ul>
+          <li><a href="index.html" class="">Dashboard</a></li>
+          <li><a href="produtos.html" class="">Produtos</a></li>
+          <li><a href="estoque.html" class="">Estoque</a></li>
+          <li><a href="financeiro.html" class="ativo">Financeiro</a></li>
+          <li><a href="administracao.html" class="">Administração</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="main-content">
+      <header>
+        <h1>Controle Financeiro</h1>
+        <p>Acompanhe vendas, despesas e lucro da loja</p>
+      </header>
+
+      <section class="cards">
+
+        <div class="card">
+  <h3>Faturamento</h3>
+  <p id="faturamento">R$ 0,00</p>
+</div>
+
+<div class="card">
+  <h3>Despesas</h3>
+  <p id="despesas">R$ 0,00</p>
+</div>
+
+<div class="card">
+  <h3>Lucro</h3>
+  <p id="lucro">R$ 0,00</p>
+</div>
+
+      </section>
+
+      <section class="form-section">
+        <h2>Adicionar Movimentação</h2>
+
+        <form id="financeiroForm">
+          <input
+            type="text"
+            id="descricao"
+            placeholder="Descrição"
+            required
+          >
+
+          <input
+            type="number"
+            id="valor"
+            placeholder="Valor"
+            required
+          >
+
+          <select id="tipo" required>
+            <option value="">Tipo</option>
+            <option value="entrada">Entrada</option>
+            <option value="saida">Saída</option>
+          </select>
+
+          <button type="submit">Salvar</button>
+        </form>
+      </section>
+
+      <section class="lista-financeira">
+        <h2>Movimentações</h2>
+        <ul id="listaFinanceira"></ul>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="financeiro.js"></script>
+</body>
+</html>

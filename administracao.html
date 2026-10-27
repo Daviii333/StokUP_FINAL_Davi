@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StokUP | Administração</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<aside class="sidebar">
+<img src="logo-stokup.png" alt="StokUP" class="logo-stokup">
+<nav><ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="produtos.html">Produtos</a></li>
+<li><a href="estoque.html">Estoque</a></li>
+<li><a href="financeiro.html">Financeiro</a></li>
+<li><a href="administracao.html">Administração</a></li>
+</ul></nav>
+</aside>
+<main class="main-content">
+<header><h1>Administração</h1><p>Configurações e manutenção do sistema StokUP.</p></header>
+<section class="cards">
+<div class="card"><h3>Produtos cadastrados</h3><p id="admProdutos">0</p></div>
+<div class="card"><h3>Movimentações financeiras</h3><p id="admFinanceiro">0</p></div>
+<div class="card"><h3>Armazenamento</h3><p>localStorage</p></div>
+</section>
+<section class="form-section">
+<h2>Manutenção dos dados</h2>
+<p>Use esta opção somente para iniciar o sistema novamente.</p>
+<div class="actions" style="margin-top:20px;">
+<button id="limpar" type="button">Limpar dados do sistema</button>
+</div>
+</section>
+</main></div>
+<script>
+const produtos=JSON.parse(localStorage.getItem('produtos'))||[];
+const financeiro=JSON.parse(localStorage.getItem('financeiro'))||[];
+document.getElementById('admProdutos').textContent=produtos.length;
+document.getElementById('admFinanceiro').textContent=financeiro.length;
+document.getElementById('limpar').onclick=()=>{
+ if(confirm('Deseja apagar todos os produtos e lançamentos financeiros?')){
+  localStorage.removeItem('produtos'); localStorage.removeItem('financeiro'); location.reload();
+ }
+};
+</script>
+</body></html>

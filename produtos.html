@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>StokUP | Produtos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <aside class="sidebar">
+    <img src="logo-stokup.png" alt="StokUP" class="logo-stokup">
+    <nav>
+        <ul>
+          <li><a href="index.html" class="">Dashboard</a></li>
+          <li><a href="produtos.html" class="ativo">Produtos</a></li>
+          <li><a href="estoque.html" class="">Estoque</a></li>
+          <li><a href="financeiro.html" class="">Financeiro</a></li>
+          <li><a href="administracao.html" class="">Administração</a></li>
+        </ul>
+      </nav>
+  </aside>
+
+  <main class="main-content">
+
+    <h1>Cadastrar Produto</h1>
+
+<form id="produtoForm">
+
+  <input type="text" id="nome" placeholder="Nome" required>
+
+  <input type="number" id="preco" placeholder="Preço" step="0.01" required>
+
+  <input type="number" id="quantidade" placeholder="Quantidade" required>
+
+  <input type="text" id="imagem" placeholder="URL da imagem">
+  
+<input type="text" id="descricao" placeholder="Descrição">
+
+  <button type="submit">Salvar</button>
+
+</form>
+
+<ul id="listaProdutos" class="lista-produtos"></ul>
+
+  </main>
+
+</div>
+
+<script src="produtos.js"></script>
+</body>
+</html>

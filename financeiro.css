@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+:root {
+  --roxo: #1268D6;
+  --roxo-escuro: #1268D6;
+  --branco: #FFFFFF;
+  --preto: #172033;
+  --cinza: #F4F7FB;
+  --verde: #16A34A;
+  --vermelho: #DC2626;
+}
+
+body {
+  background: var(--cinza);
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* MENU */
+
+.sidebar {
+  width: 250px;
+  background: var(--roxo);
+  color: var(--branco);
+  padding: 30px 20px;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  margin: 20px 0;
+}
+
+.sidebar a {
+  color: var(--branco);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* CONTEÚDO */
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: var(--branco);
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: var(--roxo-escuro);
+}
+
+.card p {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.form-section,
+.lista-financeira {
+  background: var(--branco);
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+}
+
+form {
+  display: grid;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+input,
+select {
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+}
+
+button {
+  background: var(--roxo);
+  color: var(--branco);
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: var(--roxo-escuro);
+}
+
+#listaFinanceira li {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+/* STOKUP identidade visual */
+:root{
+ --azul-escuro:#071B35;
+ --azul:#1268D6;
+ --ciano:#10BCEB;
+ --branco:#FFFFFF;
+ --preto:#172033;
+ --cinza:#F4F7FB;
+}
+.sidebar{background:#071B35!important;}
+.sidebar h2{letter-spacing:1px;}
+.sidebar h2 span{color:#10BCEB;}
+.sidebar a{transition:.2s;}
+.sidebar a:hover{color:#FFFFFF!important;opacity:1;}
+
+.logo-stokup{width:190px;max-width:100%;height:auto;display:block;margin:0 auto 30px;}

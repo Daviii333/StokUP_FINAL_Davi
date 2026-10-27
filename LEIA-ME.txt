@@ -1,0 +1,14 @@
+STOKUP - VERSÃO PARA APRESENTAÇÃO
+
+Abra index.html para iniciar.
+
+Páginas:
+- index.html -> Dashboard
+- produtos.html -> Cadastro de Produtos
+- estoque.html -> Controle de Estoque
+- financeiro.html -> Controle Financeiro
+- administracao.html -> Administração
+
+Os dados continuam usando localStorage.
+A identidade UseKai foi removida e substituída por StokUP.
+Logo: logo-stokup.png (conceito caixa/movimentação, opção 5).

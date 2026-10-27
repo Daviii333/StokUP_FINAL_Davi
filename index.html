@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StokUP | Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Menu lateral -->
+    <aside class="sidebar">
+      <img src="logo-stokup.png" alt="StokUP" class="logo-stokup">
+
+      <nav>
+        <ul>
+          <li><a href="index.html" class="ativo">Dashboard</a></li>
+          <li><a href="produtos.html" class="">Produtos</a></li>
+          <li><a href="estoque.html" class="">Estoque</a></li>
+          <li><a href="financeiro.html" class="">Financeiro</a></li>
+          <li><a href="administracao.html" class="">Administração</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="main-content">
+      <header>
+        <h1>Painel Administrativo</h1>
+        <p>Gerencie produtos, estoque e financeiro de forma simples e profissional</p>
+      </header>
+
+      <!-- Cards inteligentes -->
+      <section class="cards">
+
+        <div class="card">
+          <h3>Produtos</h3>
+          <p id="totalProdutos">0 cadastrados</p>
+        </div>
+
+        <div class="card">
+          <h3>Estoque</h3>
+          <p id="totalEstoque">0 peças</p>
+        </div>
+
+        <div class="card">
+          <h3>Financeiro</h3>
+          <p id="totalFinanceiro">R$ 0,00</p>
+        </div>
+
+        </section>
+
+      <!-- Botão adicionar produto -->
+      <section class="actions">
+        <a href="produtos.html">+ Adicionar Produto</a>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- IMPORTANTE: script do dashboard -->
+  <script src="admin.js"></script>
+
+</body>
+</html>
